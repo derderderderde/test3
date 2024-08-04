@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>防伪查询</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+           
+            background-color: #f0f0f0; /* 背景颜色 */
+            position: relative; /* 使内部绝对定位元素以此为参照 */
+            font-size: 14px; /* 设置基础字体大小 */
+        }
+
+        .scroll-container {
+            width: 100vw;
+            height: 100vh;
+            overflow-y: scroll; /* 垂直滚动 */
+            position: relative;
+        }
+
+        .image-container {
+            width: 100vw; /* 覆盖视图宽度 */
+            position: absolute; /* 绝对定位以便调整位置 */
+        }
+
+        .image-container img {
+            width: 100%; /* 图片宽度为100% */
+            height: auto; /* 高度自适应 */
+        }
+
+        .image-1 { top: 0; z-index: 1; }
+        .image-2 { top: 28vh; z-index: 3; position: relative; }
+        .image-3 { top: 78vh; z-index: 2; }
+        .image-4 { top: 70vh; z-index: 5; }
+        .image-5 { top: 18vh; z-index: 4; text-align: center; color: white; }
+        .image-6 { top: 23vh; width: 20%; left: 43%; z-index: 6; text-align: center; color: white; }
+
+        .form-container {
+            position: absolute;
+            top: 10vh; /* 相对于 .image-2 的位置 */
+            left: 2%;
+            width: 90%;
+            padding: 20px;
+        }
+
+        .form-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            font-weight: bold;
+            width: 35%;
+            text-align: left;
+            color: hsla(0, 0%, 100%, 0.8);
+        }
+
+        .form-value {
+            width: 60%;
+            text-align: left;
+            color: #ffffff;
+        }
+
+        .contact-info {
+            position: absolute;
+            top: 75%;
+            left: 50%;
+            width: 100%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 7; /* 确保文本在所有图片之上 */
+            color: #ffffff;
+        }
+
+        .address-info {
+            width: 76%;
+            position: absolute;
+            top: 52%; /* 适当调整这个值，使其位于 huang.jpg 插图的合适位置 */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: left;
+            z-index: 7;
+            color: #000000;
+            background-color: #ffffff; /* 白色背景 */
+            padding: 10% 5%;
+            border-radius: 5px;
+        }
+
+        .address-container {
+           
+            position: absolute; /* 绝对定位以便调整位置 */
+        }
+
+        .address-info a {
+            display: flex;
+            align-items: center; /* 垂直居中对齐文本和图标 */
+            color: rgb(43, 41, 41); /* 黑色文字 */
+            text-decoration: none; /* 去除下划线 */
+            margin-bottom: 10px;
+        }
+
+        .address-info a:not(:last-child) {
+            border-bottom: 1px solid #e5e5e5; /* 链接之间的浅黑色长线分割 */
+            width: 100%;
+        }
+
+        .address-info img {
+            width: 100%; /* 默认大小 */
+            height: auto; /* 高度自适应 */
+            margin-left: 0px; /* 图标与文字间距 */
+            display: inline-block; /* 确保文字与图标在同一行 */
+        }
+
+        .address-info img.checkmore {
+            width: 20px; /* 仅为 checkmore.jpg 设置的新大小 */
+            margin-left: 10px; /* 图标与文字间距 */
+            vertical-align: middle; /* 确保图标与文字垂直对齐 */
+        }
+
+        .warning-message {
+            position: absolute;
+            top: 18vh; /* 调整以适当位置 */
+            width: 100%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 8;
+            color: rgba(216, 216, 216, 0.89);
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .query-count-container {
+            position: absolute;
+            top: 6vh; /* 调整以适当位置 */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="image-container image-1">
+            <img src="fangwei4.jpg" alt="防伪4">
+        </div>
+        <div class="image-container image-2">
+            <img src="lan.jpg" alt="蓝图">
+            <div class="form-container">
+                <form action="">
+                    <div class="form-section">
+                        <div class="form-label">防伪码</div>
+                        <div class="form-value">3000473671944708</div>
+                    </div>
+                    <div class="form-section">
+                        <div class="form-label">首次查询</div>
+                        <div class="form-value" id="first-query-time"></div>
+                    </div>
+                    <div class="form-section">
+                        <div class="form-label">品牌</div>
+                        <div class="form-value">shancai</div>
+                    </div>
+                    <div class="form-section">
+                        <div class="form-label">产品编号</div>
+                        <div class="form-value">50799036</div>
+                    </div>
+                    <div class="form-section">
+                        <div class="form-label">包装规格</div>
+                        <div class="form-value">5L/罐</div>
+                    </div>
+                    <div class="form-section">
+                        <div class="form-label">生产批次号</div>
+                        <div class="form-value">Q132790396</div>
+                    </div>
+                    <div class="form-section">
+                        <div class="form-label">生产商</div>
+                        <div class="form-value">巴斯夫涂料（广东）有限公司</div>
+                    </div>
+                    <div class="form-section">
+                        <div class="form-label">产地</div>
+                        <div class="form-value">广东省.江门市</div>
+                    </div>
+                </form>
+            </div>
+            <div class="contact-info">
+                <p>如需要相关咨询，请致电中国区客服热线：</p>
+                <p>400-055-7779</p>
+            </div>
+        </div>
+        <div class="image-container image-3">
+            <img src="huang.jpg" alt="黄图">
+            <div class="address-info">
+                <a href="" target="_blank">巴斯夫涂料1688品牌站  
+                    <img src="checkmore.jpg" alt="查看更多" class="checkmore">
+                </a>
+                <a>巴斯夫汽车修补漆官方网站
+                    <img src="checkmore.jpg" alt="查看更多" class="checkmore">
+                </a>
+                <a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzI4NjQ3NDY4MA==&scene=124#wechat_redirect" target="_blank">巴斯夫涂料官方微信公众号
+                    <img src="checkmore.jpg" alt="查看更多" class="checkmore">
+                </a>
+                <a href="https://m.1688.com/?__removesafearea__=1&src_cna=Y4AwH8h+RU4BASQIhFY3/r77" target="_blank">
+                    <img src="fangwei8.jpg" alt="巴斯夫汽车涂料事业部">
+                </a>
+                <a href="https://m.1688.com/?__removesafearea__=1&src_cna=Y4AwH8h+RU4BASQIhFY3/r77" target="_blank">
+                    <img src="fangwei7.jpg" alt="巴斯夫汽车涂料事业部">
+                </a>
+                <img src="fangwei9.jpg" alt="诺缤小芝麻">
+                <img src="fangwei6.jpg" alt="诺缤纷66系列">
+            </div>
+        </div>
+        <div class="image-container image-4">
+            <img src="fangwei3.jpg" alt="防伪3">
+        </div>
+        <div class="image-container image-5">
+            <img src="fangwei1.jpg" alt="防伪1">
+            <div class="form-container"></div>
+            <div class="warning-message">您所查询的防伪码已被多次查询，谨防假冒</div>
+        </div>
+        <div class="image-container image-6">
+            <img src="yellowq.jpg" alt="黄圈">
+            <div id="query-info" class="query-count-container">
+                <div>查询次数</div>
+                <div id="query-count"></div>
+            </div>  
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            var firstVisitTime = localStorage.getItem('firstVisitTime');
+            if (!firstVisitTime) {
+                firstVisitTime = new Date();
+                localStorage.setItem('firstVisitTime', firstVisitTime);
+            }
+            document.getElementById('first-query-time').textContent = new Date(firstVisitTime).toLocaleString();
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var queryCount = localStorage.getItem('queryCount') || 0;
+            queryCount++;
+            document.getElementById('query-count').textContent = queryCount;
+            localStorage.setItem('queryCount', queryCount);
+        });
+    </script>
+</body>
+</html>
