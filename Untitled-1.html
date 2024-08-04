@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>防伪查询</title>
     <style>
         body {
@@ -10,9 +10,10 @@
             padding: 0;
             width: 100vw;
             height: 100vh;
-            overflow: hidden; /* 防止页面本身滚动 */
+           
             background-color: #f0f0f0; /* 背景颜色 */
             position: relative; /* 使内部绝对定位元素以此为参照 */
+            font-size: 14px; /* 设置基础字体大小 */
         }
 
         .scroll-container {
@@ -33,17 +34,17 @@
         }
 
         .image-1 { top: 0; z-index: 1; }
-        .image-2 { top: 43vh; z-index: 2; position: relative; }
-        .image-3 { top: 130vh; z-index: 5; }
-        .image-4 { top: 105vh; z-index: 4; }
-        .image-5 { top: 28vh; z-index: 3; text-align: center; color: white; }
-        .image-6 { top: 38vh; width: 15%; left: 43%; z-index: 6; text-align: center; color: white; }
+        .image-2 { top: 28vh; z-index: 3; position: relative; }
+        .image-3 { top: 78vh; z-index: 2; }
+        .image-4 { top: 70vh; z-index: 5; }
+        .image-5 { top: 18vh; z-index: 4; text-align: center; color: white; }
+        .image-6 { top: 23vh; width: 20%; left: 43%; z-index: 6; text-align: center; color: white; }
 
         .form-container {
             position: absolute;
-            top: 20vh; /* 相对于 .image-2 的位置 */
-            left: 0%;
-            width: 80%;
+            top: 10vh; /* 相对于 .image-2 的位置 */
+            left: 2%;
+            width: 90%;
             padding: 20px;
         }
 
@@ -68,8 +69,9 @@
 
         .contact-info {
             position: absolute;
-            top: 70%;
+            top: 75%;
             left: 50%;
+            width: 100%;
             transform: translate(-50%, -50%);
             text-align: center;
             z-index: 7; /* 确保文本在所有图片之上 */
@@ -77,21 +79,21 @@
         }
 
         .address-info {
-            width: 55%;
+            width: 76%;
             position: absolute;
-            top: 50%; /* 适当调整这个值，使其位于 huang.jpg 插图的合适位置 */
+            top: 52%; /* 适当调整这个值，使其位于 huang.jpg 插图的合适位置 */
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: left;
             z-index: 7;
             color: #000000;
             background-color: #ffffff; /* 白色背景 */
-            padding: 20% 15%;
+            padding: 10% 5%;
             border-radius: 5px;
         }
 
         .address-container {
-            width: 100vw; /* 覆盖视图宽度 */
+           
             position: absolute; /* 绝对定位以便调整位置 */
         }
 
@@ -100,34 +102,35 @@
             align-items: center; /* 垂直居中对齐文本和图标 */
             color: rgb(43, 41, 41); /* 黑色文字 */
             text-decoration: none; /* 去除下划线 */
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .address-info a:not(:last-child) {
             border-bottom: 1px solid #e5e5e5; /* 链接之间的浅黑色长线分割 */
-            width: 60vw;
+            width: 100%;
         }
 
         .address-info img {
-            width: 60vw; /* 默认大小 */
+            width: 100%; /* 默认大小 */
             height: auto; /* 高度自适应 */
             margin-left: 0px; /* 图标与文字间距 */
             display: inline-block; /* 确保文字与图标在同一行 */
         }
 
         .address-info img.checkmore {
-            width: 30px; /* 仅为 checkmore.jpg 设置的新大小 */
-            margin-left: 300px; /* 图标与文字间距 */
+            width: 20px; /* 仅为 checkmore.jpg 设置的新大小 */
+            margin-left: 10px; /* 图标与文字间距 */
             vertical-align: middle; /* 确保图标与文字垂直对齐 */
         }
 
         .warning-message {
             position: absolute;
-            top: 28vh; /* 调整以适当位置 */
+            top: 18vh; /* 调整以适当位置 */
+            width: 100%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 8;
-            color: rgba(255, 255, 255, 0.89);
+            color: rgba(216, 216, 216, 0.89);
             font-weight: bold;
             text-align: center;
         }
@@ -195,7 +198,7 @@
         <div class="image-container image-3">
             <img src="huang.jpg" alt="黄图">
             <div class="address-info">
-                <a href="" target="_blank"> 巴斯夫涂料1688品牌站  
+                <a href="" target="_blank">巴斯夫涂料1688品牌站  
                     <img src="checkmore.jpg" alt="查看更多" class="checkmore">
                 </a>
                 <a>巴斯夫汽车修补漆官方网站
