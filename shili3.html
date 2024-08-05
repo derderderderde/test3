@@ -16,7 +16,7 @@
             height: 100vh;
             background-color: #f0f0f0; /* 背景颜色 */
             position: relative; /* 使内部绝对定位元素以此为参照 */
-            font-size: 13px; /* 设置基础字体大小 */
+            font-size: 15px; /* 设置基础字体大小 */
             overflow-x: hidden; /* 禁止横向滚动 */
         }
 
@@ -141,7 +141,7 @@
             position: absolute;
             top: 8vh; /* 调整以适当位置 */
             left: 50%;
-            width: 90%; /* 调整宽度 */
+            width: 100%; /* 调整宽度 */
             transform: translate(-50%, -50%);
             z-index: 9;
             color: white;
@@ -250,11 +250,18 @@
         }
 
         document.addEventListener("DOMContentLoaded", function() {
-            var queryCount = localStorage.getItem('queryCount') || 0;
-            queryCount++;
-            document.getElementById('query-count').textContent = queryCount;
-            localStorage.setItem('queryCount', queryCount);
-        });
+        // 获取个人总访问次数，默认为0
+        var totalQueryCount = localStorage.getItem('totalQueryCount') || 0;
+
+        // 将访问次数转换为数字并递增
+        totalQueryCount = parseInt(totalQueryCount, 10) + 1;
+
+        // 更新页面上的访问次数显示
+        document.getElementById('query-count').textContent = totalQueryCount;
+
+        // 将更新后的访问次数存储到 localStorage
+        localStorage.setItem('totalQueryCount', totalQueryCount);
+    });
     </script>
 </body>
 </html>
